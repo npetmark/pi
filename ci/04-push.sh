@@ -1,5 +1,5 @@
 #!/bin/bash
-docker image build -t sixeyed/pi-psod -f ./docker/web/Dockerfile .
+docker image build -t nmark/test-repo1 -f ./docker/web/Dockerfile .
 
 if [ -z ${DOCKER_HUB_USER+x} ]
 then 
@@ -8,4 +8,4 @@ else
     docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
 fi
 
-docker image push sixeyed/pi-psod
+docker image push nmark/test-repo1
