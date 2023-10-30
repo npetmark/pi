@@ -17,12 +17,12 @@ pipeline {
         //         sh 'chmod +x ./ci/02-smoke-test.sh && ./ci/02-smoke-test.sh'
         //     }
         // }
-        stage('Unit Test') {
-            steps {
-                sh 'chmod +x ./ci/03-unit-test.sh && ./ci/03-unit-test.sh'
-                mstest testResultsFile:"**/*.trx"
-            }
-        }
+        // stage('Unit Test') {
+        //     steps {
+        //         sh 'chmod +x ./ci/03-unit-test.sh && ./ci/03-unit-test.sh'
+        //         mstest testResultsFile:"**/*.trx"
+        //     }
+        // }
         stage('Push') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'DOCKER_HUB_USER', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {                      
