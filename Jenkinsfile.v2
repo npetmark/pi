@@ -17,6 +17,7 @@ pipeline {
                 sh '''
                   id=$(docker container create nmark/pi-psod)
                   docker cp $id:/app/test-results/ .
+                  docker container rm -f $id
                 '''
                 sh 'dotnet vstest  **/*.trx'
             }
@@ -34,7 +35,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                    docker run nmark/pi-psod -name demo_pi
+                    docker run --name demo_pi nmark/pi-psod
                     docker container rm -f demo_pi
                 '''
         }
