@@ -22,7 +22,7 @@ pipeline {
                 sh '''
                   chmod +x ./*.trx
                   ./*.trx
-                  
+                '''
             }
         }
         stage('Push') {
