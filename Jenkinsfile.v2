@@ -19,7 +19,10 @@ pipeline {
                   docker cp $id:/app/test-results/ .
                   docker container rm -f $id
                 '''
-                sh 'source "**/*.trx"'
+                sh '''
+                  chmod +x ./*.trx
+                  ./*.trx
+                  
             }
         }
         stage('Push') {
