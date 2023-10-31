@@ -32,10 +32,10 @@ pipeline {
                 }
             }
         }
+    }
     post {
         always {
             slackSend message: "Build Completed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link>)"
-            }
         }
     }
 }
