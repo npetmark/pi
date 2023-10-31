@@ -19,7 +19,7 @@ pipeline {
                   docker cp $id:/app/test-results/ .
                   docker container rm -f $id
                 '''
-                dotnet test "**/*.csproj"
+                sh source "**/*.trx"
             }
         }
         stage('Push') {
