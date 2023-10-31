@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'jenkins/jenkins'
+            image 'nmark/test-dotnet-jenkins'
             label 'Agent'
             }
         }
