@@ -19,7 +19,7 @@ pipeline {
                   docker cp $id:/app/test-results/ .
                   docker container rm -f $id
                 '''
-                sh 'dotnet  **/*.trx'
+                sh 'dotnet vstest  **/*.trx'
             }
         }
         stage('Push') {
