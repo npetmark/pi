@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Verify') {
             steps {
-                slackSend message: "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link>)"
+                slackSend message: "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|${env.JOB_NAME}>)"
                 sh 'docker version'
             }
         }
