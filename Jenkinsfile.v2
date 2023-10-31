@@ -9,13 +9,13 @@ pipeline {
         }
         stage('Build & Test') {
             steps {
-                sh 'docker image build -t sixeyed/pi-psod -f ./docker/web/Dockerfile.v2 .'
+                sh 'docker image build -t nmark/pi-psod -f ./docker/web/Dockerfile.v2 .'
             }
         }
         stage('Publish test results') {
             steps {
                 sh '''
-                  id=$(docker container create sixeyed/pi-psod)
+                  id=$(docker container create nmark/pi-psod)
                   docker cp $id:/app/test-results/ .
                   docker container rm -f $id
                 '''
@@ -27,7 +27,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'DOCKER_HUB_USER', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {                      
                     sh '''
                       docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
-                      docker image push sixeyed/pi-psod
+                      docker image push nmark/pi-psod
                     '''
                     slackSend message: "Build Completed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link>)"
                 }
