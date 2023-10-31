@@ -1,10 +1,5 @@
 pipeline {
-    agent { 
-        docker {
-            image 'nmark/test-dotnet-jenkins:latest'
-            label 'Agent' 
-            }
-        }
+    agent any
     stages {
         stage('Verify') {
             steps {
