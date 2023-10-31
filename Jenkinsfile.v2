@@ -18,7 +18,7 @@ pipeline {
                   id=$(docker container create nmark/pi-psod)
                   docker cp $id:/app/test-results/ .
                   docker container rm -f $id
-                  dotnet test "**/*.trx"
+                  dotnet test "**/*.csproj"
                 '''
             }
         }
