@@ -19,7 +19,7 @@ pipeline {
                   docker cp $id:/app/test-results/ .
                   docker container rm -f $id
                 '''
-                sh 'dotnet **/*.trx'
+                sh 'dotnet vstest **/*.trx'
             }
         }
         stage('Push') {
@@ -37,6 +37,7 @@ pipeline {
                 sh 'docker run nmark/pi-psod'
         }
     }
+}
     post {
         always {
             slackSend message: "Build Completed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link>)"
