@@ -35,9 +35,13 @@ pipeline {
             }
         }
         stage('Deploy') {
-            steps {
+            agent {
                 docker {
                     image 'nmark/pi-psod'
+                }
+            }
+            steps {
+            sh 'dovker version'
         }
     }
 }
