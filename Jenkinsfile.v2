@@ -41,7 +41,7 @@ pipeline {
                 }
             }
             steps {
-            sh 'dovker version'
+            sh 'docker version'
         }
     }
 }
