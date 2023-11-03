@@ -35,16 +35,14 @@ pipeline {
             }
         }
         stage('Deploy') {
-            agent {
-                docker {
-                    image 'nmark/pi-psod'
-                }
-            }
             steps {
-            sh 'docker version'
+                sh '''
+                    docker run --name demo_pi nmark/pi-psod
+                    docker container rm -f demo_pi
+                '''
+            }
         }
     }
-}
     post {
         always {
             slackSend message: "Build Completed - ${currentBuild.currentResult}: ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link>)"
